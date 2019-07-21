@@ -7,7 +7,7 @@ class CUser(AbstractUser):
     phoneNum = models.IntegerField(
         blank=True, null=True, verbose_name= "전화번호")               # 핸드폰 번호
     # 직업
-    job = models.ForeignKey('Job', on_delete=models.CASCADE, related_name='user_job', blank=True, null=True, verbose_name="직업ㄴ")
+    job = models.ForeignKey('Job', on_delete=models.CASCADE, related_name='user_job', blank=True, null=True, verbose_name="직업")
     license = models.CharField(
         max_length=20, blank=True, null=True, verbose_name="자격증")    # 자격증
     # 레벨
@@ -27,7 +27,7 @@ class CUser(AbstractUser):
 # 기관 유저에 대해 이어줄 테이블 
 class Organ(models.Model):
     crew = models.CharField(max_length=20, verbose_name="소속")                # 소속
-    ead = models.CharField(max_length=20, verbose_name="책임자명")             # 책임자명
+    head = models.CharField(max_length=20, verbose_name="책임자명")             # 책임자명
     url = models.CharField(max_length=500,default="", verbose_name="URL")     # 인터넷 주소
     def __str(self):
         return self.Cuser.username
@@ -62,7 +62,7 @@ class Job(models.Model):
 # 상품
 class Product(models.Model):
     name = models.CharField(max_length=30)  # 상품명
-    brand = models.ForeignKey('Brand', on_delete=models.CASCADE) # 상품의 브랜드
+    brand = models.ForeignKey('Brand', on_delete=models.CASCADE, related_name="products") # 상품의 브랜드
     point = models.IntegerField()           # 해당 상품의 포인트
     image = models.ImageField(upload_to='images/', blank=True)
     def __str__(self):

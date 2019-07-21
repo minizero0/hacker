@@ -2,5 +2,23 @@
 {% load staticfiles%}
 
 {% block content %}
+{% if user.is_authenticated %}
+{{ user.id }}<br>
+{% endif %}
 포인트 사용 페이지
+{% for Brand in brands.all %}
+    <h1>{{ Brand.img }}</h1>
+    <h1>{{ Brand.name }}</h1>
+    {% for Product in Brand.products.all %}
+        <p>{{ Product.name }}</p>
+        <p>{{ Product.point }}</p>
+
+        <form method="POST" action= "{% url 'point_update' Product.id user.id %}">
+            {% csrf_token %}
+            <button><input class="btn btn=btn-dark" type="submit" value="교환하기"></button>
+            <!-- <a href="{% url 'point_update' Product.id user.id %}">교환하기</a> -->
+        </form>
+
+    {% endfor %}
+{% endfor %}
 {% endblock %}

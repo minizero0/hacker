@@ -13,4 +13,6 @@ urlpatterns = [
     path('register', views.register, name='register'),               # 기관에서 봉사 등록 페이지
     path('quest', views.quest, name='quest'),                        # 일반 회원이 봉사 등록 페이지
     path('point', views.point, name='point'),                        # 일반 회원이 포인트 사용하는 페이지
+    path('point_update/<int:product_id>/<int:user_id>', views.point_update, name='point_update'),
+    path('thanks', views.point_update, name='thanks'),
 ]

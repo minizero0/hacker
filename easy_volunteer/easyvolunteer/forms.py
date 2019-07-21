@@ -28,3 +28,4 @@ class ServiceForm(forms.ModelForm):
         model = Service
         fields = ['name', 'Essential', 'point', ' level', 'number', 'emergency', 'image']
 
+
